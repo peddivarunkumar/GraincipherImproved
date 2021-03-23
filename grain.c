@@ -1,24 +1,25 @@
 #include<stdio.h>
 #include<string.h>
 
-#define INITCLOCKS 160 //the output is fed to the registers in the beginning for 160 clocks
-#define N(i) (mygrain->NFSR[80-i]) //NFSR NON LINEAR FEEDBACK SHIFT REGISTER
-#define L(i) (mygrain->LFSR[80-i])  //LFSR LINEAR FEEDBACK SHIFT REGISTER
-
-
+#define INITCLOCKS 160
+#define N(i) (mygrain->NFSR[80-i])
+#define L(i) (mygrain->LFSR[80-i])
 #define X0 (mygrain->LFSR[3])
 #define X1 (mygrain->LFSR[25])
 #define X2 (mygrain->LFSR[46])
-#define X3 (mygrain->LFSR[64])            
-#define X4 (mygrain->LFSR[63])
-
-typedef struct{
-    int LFSR[80];
-    int NFSR[80];
-    const int* p_key; 
-    int keysize;
-    int ivsize;
+#define X3 (mygrain->LFSR[64])
+#define X4 (mygrain->NFSR[63])
+ 
+typedef struct
+{
+	int LFSR[80];
+	int NFSR[80];
+	const int* p_key;
+	int keysize;
+	int ivsize;
+ 
 } grain;
+ 
 
 // void keysetup(grain* mygrain,const int* key,int keysize,int ivsize);
 // void ivsetup(grain* mygrain,const int* iv);
